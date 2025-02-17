@@ -16,6 +16,14 @@ public class Player {
         return new Player(name, mark);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Mark getMark() {
+        return mark;
+    }
+
     private static String chooseName(){
         System.out.print("Choose a name: ");
         Scanner scanner = new Scanner(System.in);
@@ -35,11 +43,5 @@ public class Player {
         }
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public Mark getMark() {
-        return mark;
-    }
 }
