@@ -11,7 +11,7 @@ public class TicTacToe extends Game{
         showMenu();
         int decision = readPlayerDecision();
         switch (decision){
-            case 1: System.out.println("Welcome to Tic-Tac-Toe!");
+            case 1: SinglePlayer.CreteSinglePlayerGame();
             case 2: System.out.println("Would you like to play again?");
             case 3: System.exit(0);
         }
