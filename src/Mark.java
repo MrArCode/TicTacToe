@@ -1,11 +1,11 @@
-public enum Tile {
+public enum Mark {
     X("X"),
     O("O"),
     EMPTY(" ");
 
     private final String symbol;
 
-    Tile(String symbol) {
+    Mark(String symbol) {
         this.symbol = symbol;
     }
 

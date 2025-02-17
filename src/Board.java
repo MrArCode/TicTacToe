@@ -1,15 +1,15 @@
 public class Board {
-    private final Tile[][] board;
+    private final Mark[][] board;
 
-    private Board(Tile[][] board) {
+    private Board(Mark[][] board) {
         this.board = board;
     }
 
     public static Board createBoard() {
-        Tile[][] board = new Tile[3][3];
+        Mark[][] board = new Mark[3][3];
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
-                board[row][col] = Tile.EMPTY;
+                board[row][col] = Mark.EMPTY;
             }
         }
         return new Board(board);
@@ -26,5 +26,7 @@ public class Board {
         System.out.println();
     }
 
-
+    public Mark[][] getBoard() {
+        return board;
+    }
 }
