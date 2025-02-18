@@ -11,7 +11,7 @@ public class TicTacToe extends Game {
             showMenu();
             int choice = ConsoleUtil.readInt("Choose an option: ", 1, 3);
             handleChoice(choice);
-            playing = shouldContinuePlaying(playing);
+            playing = askToPlayAgain();
         }
         System.out.println("Thank you for playing!");
     }
@@ -42,11 +42,8 @@ public class TicTacToe extends Game {
         }
     }
 
-    private boolean shouldContinuePlaying(boolean playing) {
-        if (playing) {
-            String again = ConsoleUtil.readString("Do you want to play again? (y/n): ", "y", "n");
-            return again.equals("y");
-        }
-        return false;
+    private boolean askToPlayAgain() {
+        String again = ConsoleUtil.readString("Do you want to play again? (y/n): ", "y", "n");
+        return again.equalsIgnoreCase("y");
     }
 }
