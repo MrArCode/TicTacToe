@@ -1,18 +1,19 @@
-package game;
+package game.tictactoe;
 
 import ai.AI;
+import game.Game;
 import model.Board;
 import model.Player;
 import model.Mark;
 import rule.Rules;
 
-public class SinglePlayerGame extends Game {
+public class SinglePlayer extends Game {
     private final Board board = new Board();
     private final Player player;
     private final AI ai;
     private final Rules rules = Rules.getInstance();
 
-    public SinglePlayerGame() {
+    public SinglePlayer() {
         player = Player.createPlayer();
         ai = AI.createAI(player);
     }

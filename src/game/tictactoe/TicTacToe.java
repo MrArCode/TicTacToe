@@ -1,5 +1,6 @@
-package game;
+package game.tictactoe;
 
+import game.Game;
 import util.ConsoleUtil;
 
 public class TicTacToe extends Game {
@@ -27,10 +28,10 @@ public class TicTacToe extends Game {
     private void handleChoice(int choice) {
         switch (choice) {
             case 1:
-                new SinglePlayerGame().play();
+                new SinglePlayer().play();
                 break;
             case 2:
-                new HotSeatGame().play();
+                new HotSeat().play();
                 break;
             case 3:
                 System.out.println("Thank you for playing!");

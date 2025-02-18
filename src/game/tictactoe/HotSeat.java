@@ -1,18 +1,19 @@
-package game;
+package game.tictactoe;
 
+import game.Game;
 import model.Board;
 import model.Mark;
 import model.Player;
 import rule.Rules;
 
-public class HotSeatGame extends Game {
+public class HotSeat extends Game {
 
     private final Board board = new Board();
     private final Rules rules = Rules.getInstance();
     private final Player firstPlayer;
     private final Player secondPlayer;
 
-    public HotSeatGame() {
+    public HotSeat() {
         firstPlayer = Player.createPlayer();
         secondPlayer = Player.createPlayer(firstPlayer);
     }
