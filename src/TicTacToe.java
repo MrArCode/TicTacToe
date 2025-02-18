@@ -1,17 +1,26 @@
 import java.util.Scanner;
 
-public sealed class TicTacToe extends Game permits SinglePlayer {
+public sealed class TicTacToe extends Game permits SinglePlayerGame {
     private final Scanner scanner = new Scanner(System.in);
     private final Rules rules = Rules.getInstance();
+
+    enum StateOfGame{
+        PLAYING,
+        CONTINUE,
+        END
+    }
+
 
     @Override
     void play() {
         showMenu();
         int decision = readPlayerDecision();
         switch (decision){
-            case 1: SinglePlayer.CreteSinglePlayerGame().play();
+            case 1: SinglePlayerGame.Create().playSinglePlayer();
             case 2: System.out.println("Would you like to play again?");
             case 3: System.exit(0);
+            default:
+                throw new IllegalStateException("Unexpected value: " + decision);
         }
 
     }

@@ -75,8 +75,8 @@ public class AI {
     public void makeMove(Board board) {
         switch (difficulty){
             case EASY: makeEasyMove(board); break;
-            case MEDIUM: makeEasyMove(board); break;
-            case HARD: makeEasyMove(board); break;
+            case MEDIUM: makeMediumMove(board); break;
+            case HARD: makeMediumMove(board); break;
         }
     }
 
@@ -103,6 +103,27 @@ public class AI {
 
         board.markCell(position, mark);
 
+    }
+
+
+
+    public void makeMediumMove(Board board) {
+        Mark[][] state = board.getBoard();
+        Mark playerMark = mark == Mark.X ? Mark.X : Mark.O;
+
+        for (int row = 0; row < state.length; row++) {
+            for (int col = 0; col < state[row].length; col++) {
+                if (state[row][col] == Mark.EMPTY) {
+                    state[row][col] = playerMark;
+                }
+
+                if(rules.checkWin(board, playerMark)) {
+                    state[row][col] = mark;
+                }
+
+                state[row][col] = Mark.EMPTY;
+            }
+        }
     }
 
     public Mark getMark() {
