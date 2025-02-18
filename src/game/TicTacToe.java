@@ -12,6 +12,7 @@ public class TicTacToe extends Game {
             handleChoice(choice);
             playing = shouldContinuePlaying(playing);
         }
+        System.out.println("Thank you for playing!");
     }
 
     private void showMenu() {
