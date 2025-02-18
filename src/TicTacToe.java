@@ -5,7 +5,6 @@ public sealed class TicTacToe extends Game permits SinglePlayerGame {
     private final Rules rules = Rules.getInstance();
 
     enum StateOfGame{
-        PLAYING,
         CONTINUE,
         END
     }
@@ -13,17 +12,25 @@ public sealed class TicTacToe extends Game permits SinglePlayerGame {
 
     @Override
     void play() {
-        showMenu();
-        int decision = readPlayerDecision();
-        switch (decision){
-            case 1: SinglePlayerGame.Create().playSinglePlayer();
-            case 2: System.out.println("Would you like to play again?");
-            case 3: System.exit(0);
-            default:
-                throw new IllegalStateException("Unexpected value: " + decision);
+        StateOfGame state = StateOfGame.CONTINUE;
+        while (state == StateOfGame.CONTINUE) {
+            showMenu();
+            int decision = readPlayerDecision();
+            state = switch (decision) {
+                case 1 -> SinglePlayerGame.create().playSinglePlayer();
+                case 2 -> {
+                    System.out.println("Would you like to play again?");
+                    yield StateOfGame.CONTINUE;
+                }
+                case 3 -> {
+                    System.exit(0);
+                    yield null;
+                }
+                default -> throw new IllegalStateException("Unexpected value: " + decision);
+            };
         }
-
     }
+
 
     public Rules getRules() {
         return rules;

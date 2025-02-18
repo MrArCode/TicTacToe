@@ -11,34 +11,39 @@ public final class SinglePlayerGame extends TicTacToe {
     }
 
 
-    public static SinglePlayerGame Create() {
+    public static SinglePlayerGame create() {
         Player player = Player.createPlayer();
         AI ai = AI.createAI(player);
         return new SinglePlayerGame(player, ai);
     }
 
     public StateOfGame playSinglePlayer() {
-        boolean gameOver = false;
-
-        while (gameOver) {
-
+        while (true) {
             player.makeMove(board);
             board.showBoard();
-            gameOver = super.getRules().checkWin(board, player.mark());
+            if (super.getRules().checkWin(board, player.mark())) {
+                System.out.println("Gracz wygrywa!");
+                break;
+            }
 
-            if (gameOver) break;
+            if (Rules.getInstance().isDraw(board)) {
+                System.out.println("Remis!");
+                break;
+            }
 
             ai.makeMove(board);
             board.showBoard();
-            gameOver = super.getRules().checkWin(board, ai.getMark());
-
-            if (gameOver) break;
-
+            if (super.getRules().checkWin(board, ai.getMark())) {
+                System.out.println("AI wygrywa!");
+                break;
+            }
+            if (Rules.getInstance().isDraw(board)) {
+                System.out.println("Remis!");
+                break;
+            }
         }
 
         return isPlayingAgain();
-
-
     }
 
     private StateOfGame isPlayingAgain() {

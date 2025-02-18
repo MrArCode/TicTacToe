@@ -10,7 +10,33 @@ public record Player(String name, Mark mark) {
     }
 
     public void makeMove(Board board) {
+        Scanner scanner = new Scanner(System.in);
+        int move;
+        while (true) {
+            System.out.print("Enter your move (1-9): ");
+            String input = scanner.nextLine().trim();
+            try {
+                move = Integer.parseInt(input);
+                if (move < 1 || move > 9) {
+                    System.out.println("Please enter a number between 1 and 9.");
+                    continue;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                continue;
+            }
 
+            int row = (move - 1) / 3;
+            int col = (move - 1) % 3;
+
+            if (board.getBoard()[row][col] != Mark.EMPTY) {
+                System.out.println("Cell is already occupied. Please choose another cell.");
+                continue;
+            }
+
+            board.markCell(new int[]{row,col}, this.mark());
+            break;
+        }
     }
 
     private static String chooseName() {

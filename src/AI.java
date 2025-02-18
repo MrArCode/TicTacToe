@@ -24,7 +24,7 @@ public class AI {
 
 
     public static AI createAI(Player humanPlayer) {
-        Mark aiMark = humanPlayer.mark() == Mark.X ? Mark.X : Mark.O;
+        Mark aiMark = humanPlayer.mark() == Mark.X ? Mark.O : Mark.X;
 
         while (true) {
             System.out.println("What difficulty would you like to play?\n" +
