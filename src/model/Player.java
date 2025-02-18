@@ -11,6 +11,13 @@ public record Player(String name, Mark mark) {
         return new Player(name, mark);
     }
 
+    public static Player createPlayer(Player player) {
+        System.out.print("Enter your name: ");
+        String name = ConsoleUtil.scanner.nextLine();
+        Mark mark = player.mark() == Mark.X ? Mark.O : Mark.X;
+        return new Player(name, mark);
+    }
+
     private static Mark chooseMark() {
         while (true) {
             System.out.print("Choose your mark (X/O): ");

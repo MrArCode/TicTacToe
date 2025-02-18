@@ -29,7 +29,7 @@ public class TicTacToe extends Game {
                 new SinglePlayerGame().play();
                 break;
             case 2:
-                System.out.println("Hot Seat mode is not yet implemented.");
+                new HotSeatGame().play();
                 break;
             case 3:
                 System.out.println("Thank you for playing!");
