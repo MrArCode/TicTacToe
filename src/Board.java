@@ -26,6 +26,10 @@ public class Board {
         System.out.println();
     }
 
+    public void markCell(int[] position, Mark mark) {
+        board[position[0]][position[1]] = mark;
+    }
+
     public Mark[][] getBoard() {
         return board;
     }

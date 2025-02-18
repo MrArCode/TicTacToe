@@ -1,11 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class AI {
 
-    Difficulty difficulty;
-    Mark mark;
-    Rules rules = Rules.getInstance();
     private static final Scanner scanner = new Scanner(System.in);
+
+    private final Difficulty difficulty;
+    private final Mark mark;
+    private final Rules rules = Rules.getInstance();
 
     enum Difficulty {
         EASY,
@@ -42,11 +46,7 @@ public class AI {
             }
         }
 
-
-
-
     }
-
 
     private static int readPlayerDecision() {
         while (true) {
@@ -72,5 +72,40 @@ public class AI {
         }
     }
 
+    public void makeMove(Board board) {
+        switch (difficulty){
+            case EASY: makeEasyMove(board); break;
+            case MEDIUM: makeEasyMove(board); break;
+            case HARD: makeEasyMove(board); break;
+        }
+    }
 
+
+    public void makeEasyMove(Board board) {
+        List<int[]> availableMoves = new ArrayList<>();
+
+        Mark[][] state = board.getBoard();
+
+        for (int row = 0; row < state.length; row++) {
+            for (int col = 0; col < state[row].length; col++) {
+                if (state[row][col] == Mark.EMPTY) {
+                    availableMoves.add(new int[]{row, col});
+                }
+            }
+        }
+
+        if (availableMoves.isEmpty()) {
+            return;
+        }
+
+        Random random = new Random();
+        int[] position = availableMoves.get(random.nextInt(availableMoves.size()));
+
+        board.markCell(position, mark);
+
+    }
+
+    public Mark getMark() {
+        return mark;
+    }
 }

@@ -1,23 +1,24 @@
 import java.util.Scanner;
 
-public class TicTacToe extends Game{
-    private final Board board = Board.createBoard();
-    private final Rules rules = Rules.getInstance();
+public sealed class TicTacToe extends Game permits SinglePlayer {
     private final Scanner scanner = new Scanner(System.in);
-
+    private final Rules rules = Rules.getInstance();
 
     @Override
     void play() {
         showMenu();
         int decision = readPlayerDecision();
         switch (decision){
-            case 1: SinglePlayer.CreteSinglePlayerGame();
+            case 1: SinglePlayer.CreteSinglePlayerGame().play();
             case 2: System.out.println("Would you like to play again?");
             case 3: System.exit(0);
         }
 
     }
 
+    public Rules getRules() {
+        return rules;
+    }
 
     private void showMenu() {
         System.out.println("===== Tic-Tac-Toe =====\n" +

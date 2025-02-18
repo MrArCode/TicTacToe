@@ -9,6 +9,10 @@ public record Player(String name, Mark mark) {
         return new Player(name, mark);
     }
 
+    public void makeMove(Board board) {
+
+    }
+
     private static String chooseName() {
         System.out.print("Choose a name: ");
         Scanner scanner = new Scanner(System.in);
